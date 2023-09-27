@@ -1,0 +1,39 @@
+deployAs:
+  - name: create-custom-objects-function
+    applicationType: service
+    endpoint: /
+    configuration:
+      standardConfiguration:
+        - key: CTP_REGION
+          description: region of commercetools composable commerce project
+      securedConfiguration:
+        - key: CTP_PROJECT_KEY
+          description: project key from commercetools composable commerce project
+        - key: CTP_CLIENT_ID
+          description: client id from commercetools composable commerce project
+        - key: CTP_CLIENT_SECRET
+          description: client secret from commercetools composable commerce project
+        - key: CTP_SCOPE
+          description: scope from commercetools composable commerce project
+  - name: create-variants-function
+    applicationType: service
+    endpoint: /
+    configuration:
+      standardConfiguration:
+        - key: CTP_REGION
+          description: region of commercetools composable commerce project
+      securedConfiguration:
+        - key: CTP_PROJECT_KEY
+          description: project key from commercetools composable commerce project
+        - key: CTP_CLIENT_ID
+          description: client id from commercetools composable commerce project
+        - key: CTP_CLIENT_SECRET
+          description: client secret from commercetools composable commerce project
+        - key: CTP_SCOPE
+          description: scope from commercetools composable commerce project
+        - key: mainProductType
+          description: The main ProductType from commercetools composable commerce project
+        - key: rootCategory
+          description: The rootCategory ID from commercetools composable commerce project
+        - key: childCategory
+          description: The childCategory ID from commercetools composable commerce project
