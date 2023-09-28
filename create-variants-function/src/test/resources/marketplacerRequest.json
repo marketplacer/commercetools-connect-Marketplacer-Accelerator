@@ -1,0 +1,77 @@
+{"id":"V2ViaG9va0V2ZW50LTE51","event_name":"update","payload":{
+  "data": {
+    "node": {
+      "id": "QWR2ZXJ0LTEwMDAwMDAxMg==",
+      "brand": {
+        "name": "Cotton On"
+      },
+      "title": "connect test Shirt",
+      "seller": {
+        "businessName": "Cell Phones 4U"
+      },
+      "legacyId": 100000012,
+      "variants": {
+        "edges": [
+          {
+            "node": {
+              "id": "VmFyaWFudC0yMQ==",
+              "sku": "productTest",
+              "advert": {},
+              "barcode": null,
+              "countOnHand": 1,
+              "lowestPrice": "25.0",
+              "optionValues": {
+                "nodes": [
+                  {
+                    "name": "Maroon",
+                    "optionType": {
+                      "name": "Colour"
+                    }
+                  },
+                  {
+                    "name": "XS",
+                    "optionType": {
+                      "name": "Size"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "VmFyaWFudC0yMA==",
+              "sku": null,
+              "advert": {},
+              "barcode": null,
+              "countOnHand": 1,
+              "lowestPrice": "25.0",
+              "optionValues": {
+                "nodes": [
+                  {
+                    "name": "White",
+                    "optionType": {
+                      "name": "Colour"
+                    }
+                  },
+                  {
+                    "name": "S",
+                    "optionType": {
+                      "name": "Size"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "fullTitle": "Cotton On connect test1 Shirt 2023",
+      "__typename": "Advert",
+      "description": "This product is to test Connect deployment",
+      "displayImage": {
+        "url": "https://marketplacer.imgix.net/US/DjDJK40VHdvmNJYLVrsy524Co.jpeg?auto=format&fm=pjpg&fit=max&w=&h=&s=98b5e1ed4fa1edac2c352120c98ad55e"
+      }
+    }
+  }
+}}
