@@ -50,7 +50,7 @@ class ConnectorControllerTest {
     @Test
     @Timeout(value = 2, unit = TimeUnit.MINUTES)
     void shouldCreateProductAndReturnStatus200() throws Exception {
-        MarketplacerRequest request = readObjectFromResource("src/test/resources/marketplacerRequest.json", MarketplacerRequest.class);
+        MarketplacerRequest request = readObjectFromResource("src/test/resources/marketplacerCreateRequest.json", MarketplacerRequest.class);
         String productKey = request.getPayload().getData().getNode().getLegacyId();
 
         TestUtils.deleteProductIfPresent(apiClient, productKey);
@@ -61,5 +61,35 @@ class ConnectorControllerTest {
 
         Optional<Product> createdProduct = ConnectorService.getProductByKey(productKey);
         assertTrue(createdProduct.isPresent());
+    }
+
+    @Test
+    @Timeout(value = 4, unit = TimeUnit.MINUTES)
+    void shouldUpdateProductAndReturnStatus200() throws Exception {
+        // create product
+        MarketplacerRequest request = readObjectFromResource("src/test/resources/marketplacerUpdateRequest.json", MarketplacerRequest.class);
+        String productKey = request.getPayload().getData().getNode().getLegacyId();
+
+        TestUtils.deleteProductIfPresent(apiClient, productKey);
+
+        ResponseEntity<String> response = restTemplate.postForEntity(
+                new URL(url + port + "/").toString(), TestUtils.gson.toJson(request), String.class);
+        assertTrue(response.getStatusCode().is2xxSuccessful());
+
+        Optional<Product> createdProduct = ConnectorService.getProductByKey(productKey);
+        assertTrue(createdProduct.isPresent());
+
+        // update request
+
+        MarketplacerRequest updateRequest = readObjectFromResource("src/test/resources/updateRequestJson.json", MarketplacerRequest.class);
+        String updateProductKey = updateRequest.getPayload().getData().getNode().getLegacyId();
+
+        ResponseEntity<String> updateResponse = restTemplate.postForEntity(
+                new URL(url + port + "/").toString(), TestUtils.gson.toJson(updateRequest), String.class);
+        assertTrue(updateResponse.getStatusCode().is2xxSuccessful());
+
+        Optional<Product> updatedProduct = ConnectorService.getProductByKey(updateProductKey);
+        assertTrue(updatedProduct.isPresent());
+        assertEquals(updatedProduct.get().getMasterData().getStaged().getName().values().get("en"), "Product updated");
     }
 }

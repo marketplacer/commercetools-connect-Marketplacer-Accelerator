@@ -1,21 +1,21 @@
-{"id":"V2ViaG9va0V2ZW50LTE51","event_name":"update","payload":{
+{"id":"V2ViaG9va0V2ZW50LTE52","event_name":"create","payload":{
   "data": {
     "node": {
-      "id": "QWR2ZXJ0LTEwMDAwMDAxMg==",
+      "id": "QWR2ZXJ0LTEwMDAwMDAxM==g",
       "brand": {
         "name": "Cotton On"
       },
-      "title": "connect test Shirt",
+      "title": "connect test Shirt update",
       "seller": {
         "businessName": "Cell Phones 4U"
       },
-      "legacyId": 100000012,
+      "legacyId": 100000013,
       "variants": {
         "edges": [
           {
             "node": {
-              "id": "VmFyaWFudC0yMQ==",
-              "sku": "productTest",
+              "id": "VmFyaWFudC0yMQ===",
+              "sku": "productUpdateTest",
               "advert": {},
               "barcode": null,
               "countOnHand": 1,
@@ -40,7 +40,7 @@
           },
           {
             "node": {
-              "id": "VmFyaWFudC0yMA==",
+              "id": "VmFyaWFudC0yMA===",
               "sku": null,
               "advert": {},
               "barcode": null,
