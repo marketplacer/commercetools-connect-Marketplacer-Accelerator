@@ -1,0 +1,51 @@
+name: Commercetools Marketplacer Integration CI
+concurrency: CI
+
+on: [push]
+
+jobs:
+  create-variants-function-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: create-variants-function
+    env:
+      CTP_CLIENT_ID: ${{ secrets.CTP_CLIENT_ID }}
+      CTP_CLIENT_SECRET: ${{ secrets.CTP_CLIENT_SECRET }}
+      CTP_PROJECT_KEY: ${{ secrets.CTP_PROJECT_KEY }}
+      mainProductType: ${{ secrets.mainProductType }}
+      rootCategory: ${{ secrets.rootCategory }}
+      childCategory: ${{ secrets.childCategory }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Build with Maven
+        run: mvn --batch-mode clean install
+
+  create-custom-objects-function:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: create-custom-objects-function
+    env:
+      CTP_CLIENT_ID: ${{ secrets.CTP_CLIENT_ID }}
+      CTP_CLIENT_SECRET: ${{ secrets.CTP_CLIENT_SECRET }}
+      CTP_PROJECT_KEY: ${{ secrets.CTP_PROJECT_KEY }}
+      mainProductType: ${{ secrets.mainProductType }}
+      rootCategory: ${{ secrets.rootCategory }}
+      childCategory: ${{ secrets.childCategory }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Build with Maven
+        run: mvn --batch-mode clean install
