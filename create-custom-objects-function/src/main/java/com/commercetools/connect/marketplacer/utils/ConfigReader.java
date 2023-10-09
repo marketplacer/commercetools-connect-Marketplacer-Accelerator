@@ -6,9 +6,9 @@ import java.util.Properties;
 
 public class ConfigReader {
     private static final String PROPERTIES_FILE = "config.properties";
-    public static final java.lang.String CLIENT_ID = "CTP_CLIENT_ID";
-    public static final java.lang.String CLIENT_SECRET = "CTP_CLIENT_SECRET";
-    public static final java.lang.String PROJECT_KEY = "CTP_PROJECT_KEY";
+    public static final String CLIENT_ID = "CTP_CLIENT_ID";
+    public static final String CLIENT_SECRET = "CTP_CLIENT_SECRET";
+    public static final String PROJECT_KEY = "CTP_PROJECT_KEY";
     public static final String MAIN_PRODUCT_TYPE = "mainProductType";
     public static final String ROOT_CATEGORY = "rootCategory";
     public static final String CHILD_CATEGORY = "childCategory";
