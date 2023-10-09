@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 @Service
 public class ClientService {
 
-    private static final Logger logger = Logger.getLogger(ConnectorService.class.getName());
+    private static final Logger logger = Logger.getLogger(ClientService.class.getName());
 
     private static final ConfigReader configReader = new ConfigReader();
 

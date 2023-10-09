@@ -22,7 +22,7 @@ public class Node {
     private String logoUrl;
     @SerializedName("__typename")
     @Expose
-    private String typename;
+    private String __typename;
     @SerializedName("businessName")
     @Expose
     private String businessName;
@@ -81,11 +81,11 @@ public class Node {
     }
 
     public String getTypename() {
-        return typename;
+        return __typename;
     }
 
-    public void setTypename(String typename) {
-        this.typename = typename;
+    public void set__typename(String __typename) {
+        this.__typename = __typename;
     }
 
     public String getBusinessName() {

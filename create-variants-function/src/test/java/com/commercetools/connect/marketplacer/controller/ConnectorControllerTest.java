@@ -32,4 +32,13 @@ class ConnectorControllerTest {
         assertTrue(response.getStatusCode().is2xxSuccessful());
         assertEquals("success", response.getBody());
     }
+
+    @Test
+    void shouldReturnStatus500_WhenUnexpectedErrorOccurs() throws Exception {
+        when(connectorService.createVariants(any())).thenThrow(new Exception("UnexpectedError occurred"));
+        ResponseEntity<String> response = connectorController.createVariants("{\"id\":\"V2ViaG9va0V2ZW50LTE51\",\"event_name\":\"create\",\"payload\":{\"data\": {}}}");
+
+        assertTrue(response.getStatusCode().is5xxServerError());
+        assertEquals("UnexpectedError occurred", response.getBody());
+    }
 }

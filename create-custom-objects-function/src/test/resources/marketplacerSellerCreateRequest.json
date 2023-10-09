@@ -1,0 +1,22 @@
+{"id":"V2ViaG9va0V2ZW50LTE51","event_name":"update","payload":{
+  "data": {
+    "node": {
+      "id": "U2VsbGVyLTQ=",
+      "phone": "04055100000",
+      "address": {
+        "mapUrl": "//maps.google.com/maps?q=40.7092337%2C-74.0399722&z=15",
+        "fullAddress": "76 Audrey Zapp Drive, Jersey City, NJ 07305, United States"
+      },
+      "logoUrl": null,
+      "__typename": "Seller",
+      "businessName": "Cell Phones 4U",
+      "emailAddress": "49c7abee-c235-4792-b350-222373d2e15e@email.webhook.site",
+      "openingHours": null,
+      "sellerRating": null,
+      "businessNumber": "1234",
+      "youtubeVideoUrl": null,
+      "storeDescription": null,
+      "marketplaceShippingRulesEnabled": true
+    }
+  }
+}}
