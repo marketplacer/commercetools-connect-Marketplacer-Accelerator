@@ -1,8 +1,5 @@
 package com.commercetools.connect.marketplacer.service;
 
-import com.commercetools.api.client.ProjectApiRoot;
-import com.commercetools.api.defaultconfig.ApiRootBuilder;
-import com.commercetools.api.defaultconfig.ServiceRegion;
 import com.commercetools.api.models.common.Image;
 import com.commercetools.api.models.common.PriceDraft;
 import com.commercetools.api.models.common.Reference;
@@ -14,9 +11,8 @@ import com.commercetools.connect.marketplacer.model.Option;
 import com.commercetools.connect.marketplacer.utils.ConfigReader;
 
 import com.google.gson.JsonObject;
-import io.vrap.rmf.base.client.error.NotFoundException;
-import io.vrap.rmf.base.client.oauth2.ClientCredentials;
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -30,24 +26,19 @@ public class ConnectorService {
 
     private static final ConfigReader configReader = new ConfigReader();
 
-    public static ProjectApiRoot createApiClient() {
-        final ProjectApiRoot apiRoot = ApiRootBuilder.of()
-                .defaultClient(ClientCredentials.of()
-                                .withClientId(configReader.getClientId())
-                                .withClientSecret(configReader.getClientSecret())
-                                .build(),
-                        ServiceRegion.GCP_AUSTRALIA_SOUTHEAST1)
-                .build(configReader.getProjectKey());
-        return apiRoot;
+    private final ClientService clientService;
+
+    @Autowired
+    ConnectorService(ClientService clientService) {
+        this.clientService = clientService;
     }
-    static ProjectApiRoot apiRoot = createApiClient();
 
     public String createVariants(MarketplacerRequest marketplacerRequest) throws Exception {
         JsonObject jsonResponse = new JsonObject();
         try {
-            Optional<Product> product = getProductByKey(marketplacerRequest.getPayload().getData().getNode().getLegacyId());
+            Optional<Product> product = clientService.getProductByKey(marketplacerRequest.getPayload().getData().getNode().getLegacyId());
             if (!product.isPresent()) {
-                String productId = createProduct(marketplacerRequest).getId();
+                String productId = createProduct(marketplacerRequest);
                 jsonResponse.addProperty("productId", productId);
                 logger.info("Product created: " + productId);
             } else {
@@ -64,7 +55,7 @@ public class ConnectorService {
         return jsonResponse.toString();
     }
 
-    public static Product createProduct(MarketplacerRequest marketplacerRequest) {
+    public String createProduct(MarketplacerRequest marketplacerRequest) {
         List<ProductVariantDraft> variants = createProductVariantDraft(marketplacerRequest);
         ProductVariantDraft master = variants.get(0);
         variants.remove(0);
@@ -95,13 +86,7 @@ public class ConnectorService {
                 .variants(variants)
                 .build();
 
-        Product product = apiRoot
-                .products()
-                .post(newProductDetails)
-                .executeBlocking()
-                .getBody();
-
-        return product;
+        return clientService.executeCreateProduct(newProductDetails);
     }
 
     public static List<ProductVariantDraft> createProductVariantDraft(MarketplacerRequest marketplacerRequest) {
@@ -138,25 +123,9 @@ public class ConnectorService {
         return images;
     }
 
-    public static Optional<Product> getProductByKey(String key) {
-        Optional<Product> product = Optional.empty();
-        try {
-            product = Optional.of(apiRoot
-                    .products()
-                    .withKey(key)
-                    .get()
-                    .executeBlocking()
-                    .getBody());
-            logger.info("Product found: " + product.get().getId());
-        } catch (NotFoundException e) {
-            logger.info("Product " + key + " does not exist yet.");
-        }
-        return product;
-    }
-
-    public static Product updateProduct(Product productToUpdate, MarketplacerRequest marketplacerRequest) {
+    public Product updateProduct(Product productToUpdate, MarketplacerRequest marketplacerRequest) {
         Product updatedProduct = null;
-        for (int i=0; i<productToUpdate.getMasterData().getCurrent().getVariants().size(); i++) {
+        for (int i = 0; i < productToUpdate.getMasterData().getCurrent().getVariants().size(); i++) {
             ProductVariant variant = productToUpdate.getMasterData().getCurrent().getVariants().get(i);
             final int index = i;
             ProductUpdate productUpdate = ProductUpdate
@@ -170,26 +139,20 @@ public class ConnectorService {
                     .plusActions(actionBuilder -> actionBuilder.changePriceBuilder()
                             .priceId(variant.getPrices().get(0).getId())
                             .price(PriceDraft.builder()
-                                    .value(moneyBuilder -> moneyBuilder.currencyCode("USD").centAmount((long) Double.parseDouble(marketplacerRequest.getPayload().getData().getNode().getVariants().getEdges().get(index+1).getNode().getLowestPrice())*100))
+                                    .value(moneyBuilder -> moneyBuilder.currencyCode("USD").centAmount((long) Double.parseDouble(marketplacerRequest.getPayload().getData().getNode().getVariants().getEdges().get(index + 1).getNode().getLowestPrice()) * 100))
                                     .build()))
                     .build();
 
-            updatedProduct = apiRoot
-                    .products()
-                    .withId(productToUpdate.getId())
-                    .post(productUpdate)
-                    .executeBlocking()
-                    .getBody();
+            updatedProduct = clientService.executeUpdateProduct(productToUpdate, productUpdate);
 
             String updatedProductKey = updatedProduct.getKey();
             System.out.println(updatedProductKey);
-
         }
 
         return updateMasterVariant(productToUpdate, marketplacerRequest);
     }
 
-    public static Product updateMasterVariant(Product productToUpdate, MarketplacerRequest marketplacerRequest) {
+    public Product updateMasterVariant(Product productToUpdate, MarketplacerRequest marketplacerRequest) {
         ProductUpdate productUpdate = ProductUpdate
                 .builder()
                 .version(productToUpdate.getVersion())
@@ -205,12 +168,7 @@ public class ConnectorService {
                                 .build()))
                 .build();
 
-        Product updatedProduct = apiRoot
-                .products()
-                .withId(productToUpdate.getId())
-                .post(productUpdate)
-                .executeBlocking()
-                .getBody();
+        Product updatedProduct = clientService.executeUpdateProduct(productToUpdate, productUpdate);
 
         String updatedProductKey = updatedProduct.getKey();
         System.out.println(updatedProductKey);

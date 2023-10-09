@@ -1,0 +1,212 @@
+{
+  "id": "connectTestProductUpdate1",
+  "version": 1,
+  "versionModifiedAt": "2023-10-09T07:49:40.223Z",
+  "lastMessageSequenceNumber": 1,
+  "createdAt": "2023-10-09T07:49:40.050Z",
+  "lastModifiedAt": "2023-10-09T07:49:40.223Z",
+  "lastModifiedBy": {
+    "clientId": "vL77MvIfDA41jIOG-WZptJSn",
+    "isPlatformClient": false
+  },
+  "createdBy": {
+    "clientId": "vL77MvIfDA41jIOG-WZptJSn",
+    "isPlatformClient": false
+  },
+  "productType": {
+    "typeId": "product-type",
+    "id": "91344b08-b06f-46d8-a904-57b032b378b8"
+  },
+  "masterData": {
+    "current": {
+      "name": {
+        "en": "connect test Shirt update"
+      },
+      "description": {
+        "en": "This product is to test Connect deployment"
+      },
+      "categories": [
+        {
+          "typeId": "category",
+          "id": "ff7ca831-b990-4cbe-9e75-c02c3cd48d1c"
+        },
+        {
+          "typeId": "category",
+          "id": "65dfdd99-75ee-4291-be47-1d80481e778e"
+        }
+      ],
+      "categoryOrderHints": {},
+      "slug": {
+        "en": "prodconnect-test-shirt-update"
+      },
+      "masterVariant": {
+        "id": 1,
+        "sku": "productUpdateTest",
+        "key": "productUpdateTest",
+        "prices": [
+          {
+            "id": "49b67433-287e-41c2-b1ab-1f5b1a40b046",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 2500,
+              "fractionDigits": 2
+            }
+          }
+        ],
+        "images": [
+          {
+            "url": "https://marketplacer.imgix.net/US/DjDJK40VHdvmNJYLVrsy524Co.jpeg?auto=format&fm=pjpg&fit=max&w=&h=&s=98b5e1ed4fa1edac2c352120c98ad55e",
+            "dimensions": {
+              "w": 500,
+              "h": 500
+            }
+          }
+        ],
+        "attributes": [
+          {
+            "name": "size",
+            "value": {
+              "key": "XS",
+              "label": "XS"
+            }
+          }
+        ],
+        "assets": []
+      },
+      "variants": [
+        {
+          "id": 2,
+          "prices": [
+            {
+              "id": "2f234acf-bbd5-4c88-8ad6-13edfdeaea7e",
+              "value": {
+                "type": "centPrecision",
+                "currencyCode": "USD",
+                "centAmount": 2500,
+                "fractionDigits": 2
+              }
+            }
+          ],
+          "images": [
+            {
+              "url": "https://marketplacer.imgix.net/US/DjDJK40VHdvmNJYLVrsy524Co.jpeg?auto=format&fm=pjpg&fit=max&w=&h=&s=98b5e1ed4fa1edac2c352120c98ad55e",
+              "dimensions": {
+                "w": 500,
+                "h": 500
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "size",
+              "value": {
+                "key": "S",
+                "label": "S"
+              }
+            }
+          ],
+          "assets": []
+        }
+      ],
+      "searchKeywords": {}
+    },
+    "staged": {
+      "name": {
+        "en": "Product updated"
+      },
+      "description": {
+        "en": "This product is to test Connect deployment"
+      },
+      "categories": [
+        {
+          "typeId": "category",
+          "id": "ff7ca831-b990-4cbe-9e75-c02c3cd48d1c"
+        },
+        {
+          "typeId": "category",
+          "id": "65dfdd99-75ee-4291-be47-1d80481e778e"
+        }
+      ],
+      "categoryOrderHints": {},
+      "slug": {
+        "en": "prodconnect-test-shirt-update"
+      },
+      "masterVariant": {
+        "id": 1,
+        "sku": "productUpdateTest",
+        "key": "productUpdateTest",
+        "prices": [
+          {
+            "id": "49b67433-287e-41c2-b1ab-1f5b1a40b046",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 2500,
+              "fractionDigits": 2
+            }
+          }
+        ],
+        "images": [
+          {
+            "url": "https://marketplacer.imgix.net/US/DjDJK40VHdvmNJYLVrsy524Co.jpeg?auto=format&fm=pjpg&fit=max&w=&h=&s=98b5e1ed4fa1edac2c352120c98ad55e",
+            "dimensions": {
+              "w": 500,
+              "h": 500
+            }
+          }
+        ],
+        "attributes": [
+          {
+            "name": "size",
+            "value": {
+              "key": "XS",
+              "label": "XS"
+            }
+          }
+        ],
+        "assets": []
+      },
+      "variants": [
+        {
+          "id": 2,
+          "prices": [
+            {
+              "id": "2f234acf-bbd5-4c88-8ad6-13edfdeaea7e",
+              "value": {
+                "type": "centPrecision",
+                "currencyCode": "USD",
+                "centAmount": 2500,
+                "fractionDigits": 2
+              }
+            }
+          ],
+          "images": [
+            {
+              "url": "https://marketplacer.imgix.net/US/DjDJK40VHdvmNJYLVrsy524Co.jpeg?auto=format&fm=pjpg&fit=max&w=&h=&s=98b5e1ed4fa1edac2c352120c98ad55e",
+              "dimensions": {
+                "w": 500,
+                "h": 500
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "size",
+              "value": {
+                "key": "S",
+                "label": "S"
+              }
+            }
+          ],
+          "assets": []
+        }
+      ],
+      "searchKeywords": {}
+    },
+    "published": false,
+    "hasStagedChanges": true
+  },
+  "key": "100000013",
+  "lastVariantId": 2
+}

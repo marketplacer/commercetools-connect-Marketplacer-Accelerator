@@ -31,7 +31,7 @@ public class ConnectorController {
         MarketplacerRequest marketplacerRequest = gson.fromJson(requestBody, MarketplacerRequest.class);
 
         logger.info(gson.toJson(marketplacerRequest));
-        if(null == marketplacerRequest.getPayload()) {
+        if(null == marketplacerRequest || null == marketplacerRequest.getPayload()) {
             return ResponseEntity.badRequest().body("Bad request parameters");
         }
 
