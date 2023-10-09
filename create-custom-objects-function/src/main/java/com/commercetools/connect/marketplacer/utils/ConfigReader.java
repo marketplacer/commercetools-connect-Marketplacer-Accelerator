@@ -13,6 +13,8 @@ public class ConfigReader {
     public static final String ROOT_CATEGORY = "rootCategory";
     public static final String CHILD_CATEGORY = "childCategory";
 
+    public static final String COMMERCETOOLS_CLIENT_REGION = "COMMERCETOOLS_CLIENT_REGION";
+
     private Properties properties;
 
     public ConfigReader() {
@@ -73,5 +75,13 @@ public class ConfigReader {
             childCategory = System.getenv(CHILD_CATEGORY);
         }
         return childCategory;
+    }
+
+    public String getRegion() {
+        String region = properties.getProperty(COMMERCETOOLS_CLIENT_REGION);
+        if (null == region) {
+            region = System.getenv(COMMERCETOOLS_CLIENT_REGION);
+        }
+        return region;
     }
 }

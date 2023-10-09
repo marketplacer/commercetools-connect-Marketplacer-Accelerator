@@ -27,8 +27,22 @@ public class ClientService {
                                 .withClientId(configReader.getClientId())
                                 .withClientSecret(configReader.getClientSecret())
                                 .build(),
-                        ServiceRegion.GCP_EUROPE_WEST1)
+                        getRegion(configReader.getRegion()))
                 .build(configReader.getProjectKey());
+    }
+
+    public ServiceRegion getRegion(String region) {
+        if (null == region) {
+            return ServiceRegion.GCP_AUSTRALIA_SOUTHEAST1;
+        }
+
+        if (region.toLowerCase().contains("europe")) {
+            return ServiceRegion.GCP_EUROPE_WEST1;
+        } else if(region.contains("us")) {
+            return ServiceRegion.GCP_US_CENTRAL1;
+        } else {
+            return ServiceRegion.GCP_AUSTRALIA_SOUTHEAST1;
+        }
     }
 
     private final ProjectApiRoot apiRoot = createApiClient();
