@@ -20,10 +20,10 @@
   "masterData": {
     "current": {
       "name": {
-        "en": "connect test Shirt update"
+        "en-US": "connect test Shirt update"
       },
       "description": {
-        "en": "This product is to test Connect deployment"
+        "en-US": "This product is to test Connect deployment"
       },
       "categories": [
         {
@@ -37,7 +37,7 @@
       ],
       "categoryOrderHints": {},
       "slug": {
-        "en": "prodconnect-test-shirt-update"
+        "en-US": "prodconnect-test-shirt-update"
       },
       "masterVariant": {
         "id": 1,
@@ -113,10 +113,10 @@
     },
     "staged": {
       "name": {
-        "en": "Product updated"
+        "en-US": "Product updated"
       },
       "description": {
-        "en": "This product is to test Connect deployment"
+        "en-US": "This product is to test Connect deployment"
       },
       "categories": [
         {
@@ -130,7 +130,7 @@
       ],
       "categoryOrderHints": {},
       "slug": {
-        "en": "prodconnect-test-shirt-update"
+        "en-US": "prodconnect-test-shirt-update"
       },
       "masterVariant": {
         "id": 1,
