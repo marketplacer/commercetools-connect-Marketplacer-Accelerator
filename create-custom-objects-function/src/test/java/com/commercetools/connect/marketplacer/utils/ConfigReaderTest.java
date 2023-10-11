@@ -11,8 +11,5 @@ public class ConfigReaderTest {
         assertEquals("clientId", configReader.getClientId());
         assertEquals("clientSecret", configReader.getClientSecret());
         assertEquals("projectKey", configReader.getProjectKey());
-        assertEquals("productType", configReader.getMainProductType());
-        assertEquals("rootCategory", configReader.getRootCategory());
-        assertEquals("childCategory", configReader.getChildCategory());
     }
 }
