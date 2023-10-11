@@ -68,18 +68,18 @@ public class ConnectorService {
                 .builder()
                 .name(stringBuilder ->
                         stringBuilder
-                                .addValue("en", marketplacerRequest.getPayload().getData().getNode().getTitle())
+                                .addValue("en-US", marketplacerRequest.getPayload().getData().getNode().getTitle())
 
                 )
                 .productType(typeBuilder -> typeBuilder.key(configReader.getMainProductType()))
                 .key(marketplacerRequest.getPayload().getData().getNode().getLegacyId())
                 .slug(stringBuilder ->
                         stringBuilder
-                                .addValue("en", "prod" + marketplacerRequest.getPayload().getData().getNode().getTitle().toLowerCase().replace(" ", "-").replace("'",""))
+                                .addValue("en-US", "prod" + marketplacerRequest.getPayload().getData().getNode().getTitle().toLowerCase().replace(" ", "-").replace("'",""))
                 )
                 .description(stringBuilder ->
                         stringBuilder
-                                .addValue("en", marketplacerRequest.getPayload().getData().getNode().getDescription())
+                                .addValue("en-US", marketplacerRequest.getPayload().getData().getNode().getDescription())
                 )
                 .categories(categories)
                 .masterVariant(master)
@@ -135,7 +135,7 @@ public class ConnectorService {
                             actionBuilder.changeNameBuilder()
                                     .name(stringBuilder ->
                                             stringBuilder
-                                                    .addValue("en", marketplacerRequest.getPayload().getData().getNode().getTitle())))
+                                                    .addValue("en-US", marketplacerRequest.getPayload().getData().getNode().getTitle())))
                     .plusActions(actionBuilder -> actionBuilder.changePriceBuilder()
                             .priceId(variant.getPrices().get(0).getId())
                             .price(PriceDraft.builder()
@@ -160,7 +160,7 @@ public class ConnectorService {
                         actionBuilder.changeNameBuilder()
                                 .name(stringBuilder ->
                                         stringBuilder
-                                                .addValue("en", marketplacerRequest.getPayload().getData().getNode().getTitle())))
+                                                .addValue("en-US", marketplacerRequest.getPayload().getData().getNode().getTitle())))
                 .plusActions(actionBuilder -> actionBuilder.changePriceBuilder()
                         .priceId(productToUpdate.getMasterData().getCurrent().getMasterVariant().getPrices().get(0).getId())
                         .price(PriceDraft.builder()

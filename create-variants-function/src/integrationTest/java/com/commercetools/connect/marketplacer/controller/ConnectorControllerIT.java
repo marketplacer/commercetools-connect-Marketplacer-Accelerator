@@ -83,6 +83,6 @@ class ConnectorControllerIT {
 
         Optional<Product> updatedProduct = getProductByKey(apiClient, updateProductKey);
         assertTrue(updatedProduct.isPresent());
-        assertEquals(updatedProduct.get().getMasterData().getStaged().getName().values().get("en"), "Product updated");
+        assertEquals(updatedProduct.get().getMasterData().getStaged().getName().values().get("en-US"), "Product updated");
     }
 }
