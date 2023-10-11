@@ -9,10 +9,6 @@ public class ConfigReader {
     public static final String CLIENT_ID = "CTP_CLIENT_ID";
     public static final String CLIENT_SECRET = "CTP_CLIENT_SECRET";
     public static final String PROJECT_KEY = "CTP_PROJECT_KEY";
-    public static final String MAIN_PRODUCT_TYPE = "mainProductType";
-    public static final String ROOT_CATEGORY = "rootCategory";
-    public static final String CHILD_CATEGORY = "childCategory";
-
     public static final String COMMERCETOOLS_CLIENT_REGION = "COMMERCETOOLS_CLIENT_REGION";
 
     private Properties properties;
@@ -51,30 +47,6 @@ public class ConfigReader {
             projectKey = System.getenv(PROJECT_KEY);
         }
         return projectKey;
-    }
-
-    public String getMainProductType() {
-        String mainProductType = properties.getProperty(MAIN_PRODUCT_TYPE);
-        if (null == mainProductType) {
-            mainProductType = System.getenv(MAIN_PRODUCT_TYPE);
-        }
-        return mainProductType;
-    }
-
-    public String getRootCategory() {
-        String rootCategory = properties.getProperty(ROOT_CATEGORY);
-        if (null == rootCategory) {
-            rootCategory = System.getenv(ROOT_CATEGORY);
-        }
-        return rootCategory;
-    }
-
-    public String getChildCategory() {
-        String childCategory = properties.getProperty(CHILD_CATEGORY);
-        if (null == childCategory) {
-            childCategory = System.getenv(CHILD_CATEGORY);
-        }
-        return childCategory;
     }
 
     public String getRegion() {
