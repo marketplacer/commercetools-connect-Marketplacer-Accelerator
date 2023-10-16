@@ -67,15 +67,15 @@ We can obtain these values from the commercetools [Impex tool](https://impex.aus
 - Login to [Impex](https://impex.australia-southeast1.gcp.commercetools.com/)
 - Select API Playground
 
-**INSERT IMAGE HERE**
+![impex1](https://github.com/marketplacer/commercetools-connect-Marketplacer-Accelerator/assets/815719/4a69f9c0-3b7c-42d5-8fe0-5e3a7007d5e7)
 
 - Select `Product Types` for the endpoint:
 
-**INSERT IMAGE HERE**
+![impex2-product-types](https://github.com/marketplacer/commercetools-connect-Marketplacer-Accelerator/assets/815719/7205420d-4f7a-4ee4-85b2-1f489e0264bd)
 
 - Running your query should return a series of JSON objects, select a `key` value for th Product Type that you want to work with. In the example below I've selected `shirts`:
 
-**INSERT IMAGE HERE**
+![impex3-product-type-key](https://github.com/marketplacer/commercetools-connect-Marketplacer-Accelerator/assets/815719/af1a64eb-67ea-4585-9e0b-48cfe95eca79)
 
 Set this value aside as we'll be using that as our Main Product Type.
 
@@ -83,11 +83,11 @@ Set this value aside as we'll be using that as our Main Product Type.
 
 Back at the main Impext API Playground search page, select `Categories` for the endpoint:
 
-**INSERT IMAGE HERE**
+![impex4-categories](https://github.com/marketplacer/commercetools-connect-Marketplacer-Accelerator/assets/815719/53890168-6d47-482e-8fd8-159c41d2b8cd)
 
 - Running your query should return a series of JSON objects, select an `id` value for an appropriate Root Category, in the example below I have selected the `id` for the `Men` category:
 
-**INSERT IMAGE HERE**
+![impex5-root-category](https://github.com/marketplacer/commercetools-connect-Marketplacer-Accelerator/assets/815719/11a644c9-9a7f-4e40-8fae-b325be5bb3cf)
 
 > Root categories should not have any "Ancestors".
 
@@ -97,7 +97,7 @@ Set this value aside as we'll be using that as our Root Category.
 
 - Within the same result payload,(Categories search), find a suitable Child category. A suitable Child category would be one that has the Root category as an "ancestor", in the example below I've selected `Tops`:
 
-**INSERT IMAGE HERE**
+![impex6-child](https://github.com/marketplacer/commercetools-connect-Marketplacer-Accelerator/assets/815719/3eb82438-228f-4c9a-9077-1ff70f322778)
 
 Set this value aside as we'll be using that as our Main Child Category.
 
