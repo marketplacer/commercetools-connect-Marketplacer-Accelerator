@@ -13,7 +13,7 @@ In both cases we employ Marketplacer webhooks to allow for a near real-time sync
 
 ## Solution Overview
 
-TO DO
+![solution](https://github.com/marketplacer/commercetools-connect-Marketplacer-Accelerator/assets/815719/2ed299f7-cfd1-49fc-8d13-6f90d5490584)
 
 The accelerator is implemented as a Google Cloud Function providing the following 2 HTTPS POST endpoints:
 
