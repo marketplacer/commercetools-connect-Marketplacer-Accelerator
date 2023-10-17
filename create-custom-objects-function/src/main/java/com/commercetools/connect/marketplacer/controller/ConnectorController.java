@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @RestController
@@ -39,6 +39,7 @@ public class ConnectorController {
             String response = createCustomObjectService.createCustomObjects(marketplacerRequest);
             return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(response);
         } catch (Exception e) {
+            logger.log(Level.SEVERE, e.getMessage(), e);
             return ResponseEntity.internalServerError().body(e.getMessage());
         }
     }

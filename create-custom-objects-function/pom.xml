@@ -17,7 +17,7 @@
     <properties>
         <java.version>17</java.version>
         <junit-jupiter.version>5.8.1</junit-jupiter.version>
-        <commercetools.version>9.5.0</commercetools.version>
+        <commercetools.version>17.0.0</commercetools.version>
         <snakeyaml.version>2.0</snakeyaml.version>
     </properties>
 

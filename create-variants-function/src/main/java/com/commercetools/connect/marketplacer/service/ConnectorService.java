@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service
@@ -49,7 +50,7 @@ public class ConnectorService {
             String stacktrace = ExceptionUtils.getStackTrace(e);
             jsonResponse = new JsonObject();
             jsonResponse.addProperty("stackTrace" , stacktrace);
-            logger.info(stacktrace);
+            logger.log(Level.SEVERE, e.getMessage(), e);
             throw new Exception(jsonResponse.toString());
         }
         return jsonResponse.toString();

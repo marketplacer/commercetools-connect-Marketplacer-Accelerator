@@ -8,6 +8,7 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service
@@ -30,7 +31,7 @@ public class CreateCustomObjectService {
             String stacktrace = ExceptionUtils.getStackTrace(e);
             jsonResponse = new JsonObject();
             jsonResponse.addProperty("stackTrace", stacktrace);
-            logger.info(stacktrace);
+            logger.log(Level.SEVERE, e.getMessage(), e);
             throw new Exception(jsonResponse.toString());
         }
         return jsonResponse.toString();
