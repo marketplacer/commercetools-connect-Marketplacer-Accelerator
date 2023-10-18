@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service
@@ -49,13 +50,13 @@ public class ConnectorService {
             String stacktrace = ExceptionUtils.getStackTrace(e);
             jsonResponse = new JsonObject();
             jsonResponse.addProperty("stackTrace" , stacktrace);
-            logger.info(stacktrace);
+            logger.log(Level.SEVERE, e.getMessage(), e);
             throw new Exception(jsonResponse.toString());
         }
         return jsonResponse.toString();
     }
 
-    public String createProduct(MarketplacerRequest marketplacerRequest) {
+    private String createProduct(MarketplacerRequest marketplacerRequest) {
         List<ProductVariantDraft> variants = createProductVariantDraft(marketplacerRequest);
         ProductVariantDraft master = variants.get(0);
         variants.remove(0);
@@ -89,7 +90,7 @@ public class ConnectorService {
         return clientService.executeCreateProduct(newProductDetails);
     }
 
-    public static List<ProductVariantDraft> createProductVariantDraft(MarketplacerRequest marketplacerRequest) {
+    private static List<ProductVariantDraft> createProductVariantDraft(MarketplacerRequest marketplacerRequest) {
         List<ProductVariantDraft> variantsDraft = new ArrayList<>();
         for (Edge variant : marketplacerRequest.getPayload().getData().getNode().getVariants().getEdges()) {
             List<Option> options = variant.getNode().getOptionValues().getNodes();
@@ -108,14 +109,14 @@ public class ConnectorService {
         return variantsDraft;
     }
 
-    public static PriceDraft createPriceDraft(Edge variant) {
+    private static PriceDraft createPriceDraft(Edge variant) {
         PriceDraft priceDraft = PriceDraft.builder()
                 .value(moneyBuilder -> moneyBuilder.currencyCode("USD").centAmount((long)Double.parseDouble(variant.getNode().getLowestPrice())*100))
                 .build();
         return priceDraft;
     }
 
-    public static List<Image> createImages(MarketplacerRequest marketplacerRequest) {
+    private static List<Image> createImages(MarketplacerRequest marketplacerRequest) {
         List<Image> images = new ArrayList<>();
         Image image = Image.builder().dimensions(imageDimensionsBuilder -> imageDimensionsBuilder.h(500).w(500)).url(marketplacerRequest.getPayload().getData().getNode().getDisplayImage().getUrl())
                 .build();
@@ -123,7 +124,7 @@ public class ConnectorService {
         return images;
     }
 
-    public Product updateProduct(Product productToUpdate, MarketplacerRequest marketplacerRequest) {
+    private Product updateProduct(Product productToUpdate, MarketplacerRequest marketplacerRequest) {
         Product updatedProduct = null;
         for (int i = 0; i < productToUpdate.getMasterData().getCurrent().getVariants().size(); i++) {
             ProductVariant variant = productToUpdate.getMasterData().getCurrent().getVariants().get(i);
@@ -146,13 +147,13 @@ public class ConnectorService {
             updatedProduct = clientService.executeUpdateProduct(productToUpdate, productUpdate);
 
             String updatedProductKey = updatedProduct.getKey();
-            System.out.println(updatedProductKey);
+            logger.log(Level.INFO, updatedProductKey);
         }
 
         return updateMasterVariant(productToUpdate, marketplacerRequest);
     }
 
-    public Product updateMasterVariant(Product productToUpdate, MarketplacerRequest marketplacerRequest) {
+    private Product updateMasterVariant(Product productToUpdate, MarketplacerRequest marketplacerRequest) {
         ProductUpdate productUpdate = ProductUpdate
                 .builder()
                 .version(productToUpdate.getVersion())

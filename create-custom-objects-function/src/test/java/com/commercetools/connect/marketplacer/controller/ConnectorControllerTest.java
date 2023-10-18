@@ -39,7 +39,7 @@ class ConnectorControllerTest {
         ResponseEntity<String> response = connectorController.createCustomObjects("{\"id\":\"V2ViaG9va0V2ZW50LTE51\",\"event_name\":\"create\",\"payload\":{\"data\": {}}}");
 
         assertTrue(response.getStatusCode().is5xxServerError());
-        assertEquals("UnexpectedError occurred", response.getBody());
+        assertEquals("create custom object error: UnexpectedError occurred", response.getBody());
     }
 }
 

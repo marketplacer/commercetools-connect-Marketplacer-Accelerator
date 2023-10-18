@@ -21,7 +21,7 @@ public class ClientService {
 
     private static final ConfigReader configReader = new ConfigReader();
 
-    public ProjectApiRoot createApiClient() {
+    private ProjectApiRoot createApiClient() {
         return ApiRootBuilder.of()
                 .defaultClient(ClientCredentials.of()
                                 .withClientId(configReader.getClientId())
@@ -31,7 +31,7 @@ public class ClientService {
                 .build(configReader.getProjectKey());
     }
 
-    public ServiceRegion getRegion(String region) {
+    protected ServiceRegion getRegion(String region) {
         if (null == region) {
             return ServiceRegion.GCP_AUSTRALIA_SOUTHEAST1;
         }
