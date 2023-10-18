@@ -37,7 +37,7 @@ public class CreateCustomObjectService {
         return jsonResponse.toString();
     }
 
-    public CustomObject createCustomObject(MarketplacerRequest request) {
+    private CustomObject createCustomObject(MarketplacerRequest request) {
         CustomObjectDraft customObjectDraft = CustomObjectDraft.builder()
                 .container(request.getPayload().getData().getNode().getTypename())
                 .key(request.getPayload().getData().getNode().getId().replace("=", ""))

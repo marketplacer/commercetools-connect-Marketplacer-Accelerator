@@ -39,8 +39,9 @@ public class ConnectorController {
             String response = createCustomObjectService.createCustomObjects(marketplacerRequest);
             return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(response);
         } catch (Exception e) {
-            logger.log(Level.SEVERE, e.getMessage(), e);
-            return ResponseEntity.internalServerError().body(e.getMessage());
+            String errorMessage = "create custom object error: " + e.getMessage();
+            logger.log(Level.SEVERE, errorMessage, e);
+            return ResponseEntity.internalServerError().body(errorMessage);
         }
     }
 }
