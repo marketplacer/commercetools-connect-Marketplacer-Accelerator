@@ -172,7 +172,7 @@ public class ConnectorService {
         Product updatedProduct = clientService.executeUpdateProduct(productToUpdate, productUpdate);
 
         String updatedProductKey = updatedProduct.getKey();
-        System.out.println(updatedProductKey);
+        logger.log(Level.INFO, updatedProductKey);
 
         return updatedProduct;
     }
