@@ -3,8 +3,12 @@ package com.commercetools.connect.marketplacer.utils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ConfigReader {
+
+    private static final Logger logger = Logger.getLogger(ConfigReader.class.getName());
     private static final String PROPERTIES_FILE = "config.properties";
     public static final java.lang.String CLIENT_ID = "CTP_CLIENT_ID";
     public static final java.lang.String CLIENT_SECRET = "CTP_CLIENT_SECRET";
@@ -25,7 +29,7 @@ public class ConfigReader {
                 properties.load(inputStream);
             }
         } catch(IOException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error while loading properties file!", e);
         }
     }
 
